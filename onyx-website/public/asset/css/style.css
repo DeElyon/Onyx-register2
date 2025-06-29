@@ -1,0 +1,359 @@
+/* ===== VARIABLES ===== */
+:root {
+    --primary: #6c5ce7;
+    --secondary: #a29bfe;
+    --dark: #2d3436;
+    --light: #f5f6fa;
+    --success: #00b894;
+    --whatsapp: #25D366;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BASE STYLES ===== */
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== PARTICLES BACKGROUND ===== */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    z-index: 1;
+}
+
+.particles::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="25" cy="25" r="3" fill="white"/><circle cx="75" cy="25" r="2" fill="white"/><circle cx="50" cy="50" r="4" fill="white"/><circle cx="25" cy="75" r="2" fill="white"/><circle cx="75" cy="75" r="3" fill="white"/></svg>');
+    animation: particlesMove 20s linear infinite;
+}
+
+@keyframes particlesMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+/* ===== HEADER STYLES ===== */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.logo i {
+    color: var(--primary);
+    background: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+/* ===== FORM STYLES ===== */
+.form-container {
+    background: white;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+}
+
+.form-container h1 {
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group i {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: #999;
+    transition: all 0.3s ease;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid #eee;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+    outline: none;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -10px;
+    left: 2rem;
+    font-size: 0.75rem;
+    background: white;
+    padding: 0 0.5rem;
+    color: var(--primary);
+    z-index: 2;
+}
+
+.form-group input:focus ~ i {
+    color: var(--primary);
+}
+
+.form-group label {
+    position: absolute;
+    top: 1rem;
+    left: 3rem;
+    color: #999;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn-pulse {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-pulse:hover {
+    background: #5a4bd1;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+}
+
+.btn-pulse:active {
+    transform: translateY(0);
+}
+
+.btn-pulse::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+.btn-pulse:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ===== SUCCESS PAGE STYLES ===== */
+.success-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.checkmark {
+    width: 80px;
+    height: 80px;
+    background: var(--success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 2.5rem;
+    animation: checkmarkScale 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
+@keyframes checkmarkScale {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.success-card h1 {
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.time-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--whatsapp);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+.powered-by {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.powered-by p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.scale-in {
+    animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== CONFETTI EFFECT ===== */
+.confetti {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><rect x="10" y="10" width="5" height="5" fill="%236c5ce7" transform="rotate(45)"/><circle cx="25" cy="25" r="2" fill="%2300b894"/><rect x="40" y="40" width="4" height="4" fill="%23a29bfe" transform="rotate(30)"/><circle cx="75" cy="75" r="3" fill="%2325D366"/></svg>');
+    animation: confettiFall 10s linear infinite;
+}
+
+@keyframes confettiFall {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 1000px; }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+    }
+}

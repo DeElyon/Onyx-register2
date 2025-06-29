@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // User profiles
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Posts
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && request.auth.uid == resource.data.authorId;
+    }
+
+    // Audio Rooms
+    match /audioRooms/{roomId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      
+      match /participants/{participantId} {
+        allow read: if true;
+        allow write: if request.auth != null && request.auth.uid == participanId;
+      }
+    }
+
+    // Monetization
+    match /transactions/{txId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null 
+                   && request.resource.data.amount > 0
+                   && request.resource.data.recipient != request.auth.uid;
+    }
+  }
+}
